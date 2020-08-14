@@ -204,7 +204,7 @@ class Group(BaseGroup):
                     w.payoff = 0
 
                 w.participant.vars['gain_2'] = w.payoff + w.participant.vars['gain_2']
-                #w.cumulative_payoff = sum([p.payoff for p in self.in_previous_rounds()]) + w.payoff
+                w.cumulative_payoff = sum([p.payoff for p in self.in_previous_rounds()]) + w.payoff
 
 
 class Player(BasePlayer):
