@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Partie 1 - Décision Phase 1
+{% endblock %}
+
+{% block content %}
+<p>Veuillez effectuer votre choix. Pour cela, cliquez sur le bouton bleu correspondant à celui-ci. </p>
+
+<p>Vous pouvez aussi retrouver les instructions en dessous du tableau présenté.</p>
+
+    <div class="form-group required">
+        <table class="table table-bordered text-center" style="width: auto; margin: auto">
+            <tr>
+                <th colspan="2" rowspan="2"></th>
+                <th colspan="2">L'autre membre de votre paire</th>
+            </tr>
+            <tr>
+                <th>Choix X</th>
+                <th>Choix Y</th>
+            </tr>
+            <tr>
+                <th rowspan="2"><span>Vous</span></th>
+                <td><button name="choix_inconditionnel" value="option X" class="btn btn-primary btn-large">Choix X</button></td>
+                <td>{{Constants.double_cooperation|json}} ECU ; {{Constants.double_cooperation|json}} ECU</td>
+                <td>{{Constants.cooperation|json}} ECU ; {{Constants.defection|json}} ECU</td>
+            </tr>
+            <tr>
+                <td><button name="choix_inconditionnel" value="option Y" class="btn btn-primary btn-large">Choix Y</button></td>
+                <td>{{Constants.defection|json}} ECU ; {{Constants.cooperation|json}} ECU</td>
+                <td>{{Constants.double_defection|json}} ECU ; {{Constants.double_defection|json}} ECU</td>
+            </tr>
+        </table>
+    </div>
+
+
+<br>
+<br>
+<br>
+
+<h4><strong>Instructions</strong></h4>
+<p>
+    Pour cette première phase, vous devez choisir une des deux actions proposées :
+    Le <strong>Choix X</strong> ou le <strong>Choix Y</strong>.
+    Le gain de chaque membre de la paire dépendra de sa propre décision et de la décision de l’autre membre de la paire, de la façon suivante :
+</p>
+<p>
+    -	Vous et l’autre membre de votre paire choisissez tous les deux le <strong>Choix X</strong> : vous gagnez 26 ECU et l’autre membre de votre paire gagne 26 ECU.<br>
+    -	Vous choisissez le <strong>Choix X</strong> et l’autre membre de votre paire choisit le <strong>Choix Y</strong> : vous gagnez 0 ECU et l’autre membre de votre paire gagne 33 ECU.<br>
+    -	Vous choisissez le <strong>Choix Y</strong> et l’autre membre de votre paire choisit le <strong>Choix X</strong> : vous gagnez 33 ECU et l’autre membre de votre paire gagne 0 ECU.<br>
+    -	Vous et l’autre membre de votre paire choisissez tous les deux le <strong>Choix Y</strong> : vous gagnez 20 ECU et l’autre membre de votre paire gagne 20 ECU.<br>
+</p>
+<p>
+    Vos actions et vos gains, ainsi que ceux de l’autre joueur sont résumés dans le tableau ci-dessus.
+    Dans chaque cellule, le premier nombre représente votre gain et le second nombre représente le gain de l’autre membre de votre paire.
+</p>
+<br>
+<p>Pour effectuer votre choix, veuillez cliquer sur le bouton bleu correspondant à celui-ci dans le tableau ci-dessus.</p>
+
+{% endblock %}
+
+

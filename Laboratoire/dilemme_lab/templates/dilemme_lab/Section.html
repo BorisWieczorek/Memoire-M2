@@ -1,0 +1,56 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Partie 1 - Instructions Phase 2
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Pour la seconde phase, nous vous donnons la possibilité de rectifier votre choix dans le cas où l’autre membre de votre paire ait réalisé le <strong>Choix X</strong> lors de la première phase.
+    A la fin de cette partie, l'un des membres de votre paire sera choisi aléatoirement comme <em>premier joueur</em> pour constituer vos gains. L'autre joueur aura donc la possibilité d'appliquer son choix de la phase 2 si le <em>premier joueur</em> a choisi le <strong>Choix X</strong> lors de la première phase, sinon le choix de l'autre joueur à la première phase sera appliqué.
+    Nous vous demandons donc de choisir quel choix vous souhaitez réaliser, sachant que l’autre membre de votre paire a choisi le <strong>Choix X</strong>.
+</p>
+<p>
+    Le gain de chaque membre de la paire dépend de votre choix, de la façon suivante :<br>
+    - Vous choisissez d’eﬀectuer le <strong>Choix X</strong>. Supposons que l’autre membre de votre paire soit le <em>premier joueur</em> et qu'il ait choisi le <strong>Choix X</strong> lors de la phase 1. Votre choix aboutit sur la case {{Constants.double_cooperation|json}} ECU; {{Constants.double_cooperation|json}} ECU, l’ensemble de la paire gagne {{Constants.double_cooperation|json}} ECU. <br>
+    - Vous choisissez d’eﬀectuer le <strong>Choix Y</strong>. Supposons que l’autre membre de votre paire soit le <em>premier joueur</em> et  qu'il ait choisi le <strong>Choix X</strong> lors de la phase 1. Votre choix aboutit sur la case {{Constants.defection|json}} ECU ; {{Constants.cooperation|json}} ECU, vous obtenez donc {{Constants.defection|json}} ECU et l’autre membre de votre paire obtient {{Constants.cooperation|json}} ECU. <br>
+</p>
+<p>
+    Vos actions et vos gains sont résumés comme précédemment dans le tableau ci-dessous.
+    Cette fois encore, le premier nombre représente votre gain et le second nombre représente le gain de l’autre membre de votre paire.
+</p>
+
+
+    <div class="form-group required">
+        <table class="table table-bordered text-center" style="width: auto; margin: auto">
+            <tr>
+                <th colspan="2" rowspan="2"></th>
+                <th colspan="2">L’autre membre de votre paire</th>
+            </tr>
+            <tr>
+                <th>Choix X</th>
+            </tr>
+            <tr>
+                <th rowspan="2"><span>Vous</span></th>
+                <th>Choix X</th>
+                <td>{{Constants.double_cooperation|json}} ECU ; {{Constants.double_cooperation|json}} ECU</td>
+            </tr>
+            <tr>
+                <th>Choix Y</th>
+                <td>{{Constants.defection|json}} ECU ; {{Constants.cooperation|json}} ECU</td>
+            </tr>
+        </table>
+    </div>
+
+<p>Vous devez choisir entre le choix X et le choix Y en cliquant sur le bouton correspondant au choix voulu. </p>
+<br>
+
+
+     <button class="btn btn-primary btn-large">
+        Intructions lues
+    </button>
+
+
+{% endblock %}

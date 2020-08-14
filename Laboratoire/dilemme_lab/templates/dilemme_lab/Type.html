@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Information
+{% endblock %}
+
+{% block content %}
+
+<p> Lors de la seconde phase de cette partie, vous avez choisi le <strong><span id="choice"> </span></strong>. </p>
+<p> Vous êtes donc du <strong>{{ player.type }}</strong> pour le reste de l'expérience. </p>
+<br>
+<br>
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    var myVar = setInterval(function(){f1()}, 1000);
+
+    function f1() {
+        var m =  "{{ mon_choix_conditionnel }}" ;
+        if (m == "option X") {l = "Choix X" ;} else{l = "Choix Y" ;};
+        document.getElementById("choice").innerHTML = l;
+    };
+
+    window.onload = function(){f1();};
+</script>
+
+
+{% endblock %}
