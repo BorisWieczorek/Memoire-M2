@@ -1,0 +1,82 @@
+
+{% load otree %}
+
+{% block content %}
+
+{% formfield player.contribution label="Combien des <span id=\"ball\"> </span> jetons placez vous dans le compte collectif ?" %}
+
+<style>
+.instructions {
+    margin-bottom: 20px;
+}
+.urnA{background-repeat: no-repeat; margin-left:-5%; margin-top : 0%; width : 400px; height: 250px; background-position : 50% 65%; position : absolute;}
+.urnB{background-repeat: no-repeat; margin-left:15%; margin-top : 1.8%; width : 400px; height: 250px; background-position : 65% 40%; position: relative;}
+.data{background-repeat: no-repeat; margin-left:32%; margin-top : -15% ; width : 400px; height: 600px; background-position : 60% 60%; position : absolute;}
+.info{margin-left:5%; margin-top : -5% ; width : 400px; height: 230px;position : absolute;}
+</style>
+
+    <div class="urnA">
+        <center> <strong> <font color="black"> <p>  <br/> <br/> Vous placez <span id="id_urne1_content"> </span> jetons  <br/> dans votre compte privé </p> </font> </strong> </center>
+    </div>
+
+    <div class="urnB">
+        <center> <strong> <font color="black"> <p>  <br/> <br/> &nbsp; &nbsp; &nbsp; &nbsp; Vous placez <span id="id_urne2_content"> </span> <span id="id_urne2_spe"> </span> jetons  <br/> &nbsp; &nbsp; &nbsp; &nbsp; dans le compte collectif </p> </font> </strong> </center>
+    </div>
+
+
+
+{% if player.round_number > 1 %}
+    {% include Constants.historique_W_template with parent="Contribution" %}
+{% endif %}
+
+
+
+    <div class="info">
+        <table class="table table-bordered text-center">
+            <tr><td>Votre groupe est composé de la manière suivante:</td> </tr>
+            <tr><td>Vous êtes un <strong>Rôle A</strong> de <strong>{{ group.type_W }}</strong></td> </tr>
+            <tr><td>L'autre <strong>Rôle A</strong> du groupe est du <strong>{{ group.type_W }}</strong></td> </tr>
+            <tr><td>Le <strong>Rôle B</strong> du groupe est du <strong>{{ group.type_S }}</strong></td> </tr>
+        </table>
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    var myVar = setInterval(function(){f1()}, 1000);
+    var myVar = setInterval(function(){f2()}, 1000);
+    var myVar = setInterval(function(){f3()}, 1000);
+    var myVar = setInterval(function(){f4()}, 1000);
+    var myVar = setInterval(function(){f5()}, 1000);
+
+    function f1() {
+        var t = {{   Constants.endowment|json }} - document.getElementById("id_contribution").value;
+        if (document.getElementById("id_contribution").value == "") {s = "--";} else{s = {{ Constants.endowment|json }} - document.getElementById("id_contribution").value;};
+        document.getElementById("id_urne1_content").innerHTML = s;
+    };
+    function f2() {
+        var tt =  document.getElementById("id_contribution").value ;
+        if (tt == "") {p = "--";} else{p = " "};
+        document.getElementById("id_urne2_content").innerHTML = tt;
+        document.getElementById("id_urne2_spe").innerHTML = p;
+    };
+    function f3() {
+        var ttt =  document.getElementById("id_contribution").value;
+        if (ttt == "0") {w = "50";} else {w = " ";};
+        document.getElementById("id_urne1_spe").innerHTML = w;
+    };
+        function f4() {
+        ball = {{ Constants.endowment|json }}*1;
+        document.getElementById("ball").innerHTML = ball;
+    };
+        function f5() {
+    };
+
+    window.onload = function(){f1();f2();f3();f4();f5();};
+</script>
+
+
+{% endblock %}
+

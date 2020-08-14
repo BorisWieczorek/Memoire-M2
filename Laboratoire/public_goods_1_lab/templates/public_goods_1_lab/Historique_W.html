@@ -1,0 +1,46 @@
+{% load otree static %}
+
+<div class="data">
+    <h4>Historique</h4>
+    <table class="table">
+        <thead>
+            <th>Période</th>
+            <th>Votre contribution <br> au compte collectif</th>
+            <th>Contribution de l'autre membre A <br> au compte collectif</th>
+            <th>Total compte<br>collectif</th>
+            <th>Seuil de contribution minimum<br>au compte collectif</th>
+            <th>Punition reçue</th>
+            <th>Gain<br>période</th>
+            <th>Gain<br>cumulé</th>
+        </thead>
+        <tbody>
+        {% if parent == "Contribution" %}
+            {% for p in player.in_previous_rounds reversed %}
+            <tr>
+                <td>{{ p.round_number }}</td>
+                <td>{{ p.contribution|json }}</td>
+                <td>{{ p.autre_contri|json }}</td>
+                <td>{{ p.group.total_contribution|json }}</td>
+                <td>{{ p.group.seuil_info|json }}</td>
+                <td>{{ p.punition|json }}</td>
+                <td>{{ p.payoff|json }}</td>
+                <td>{{ p.cumulative_payoff|json }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            {% for p in player.in_all_rounds reversed %}
+            <tr>
+                <td>{{ p.round_number }}</td>
+                <td>{{ p.contribution|json }}</td>
+                <td>{{ p.autre_contri|json }}</td>
+                <td>{{ p.group.total_contribution|json }}</td>
+                <td>{{ p.group.seuil_info|json }}</td>
+                <td>{{ p.punition|json }}</td>
+                <td>{{ p.payoff|json }}</td>
+                <td>{{ p.cumulative_payoff|json }}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,96 @@
+{% load otree %}
+
+
+{% block content %}
+<p>La seconde partie comporte <strong>{{Constants.num_rounds}}</strong> périodes.
+    Au début de la partie, l’ordinateur central va former des groupes de trois membres.
+    <strong>La composition des groupes restera fixe pour l’ensemble de cette partie.</strong>
+    Vous ne pourrez pas identifier les autres membres de votre groupe et ces derniers ne pourront pas vous identifier.</p>
+<p>À l’intérieur des groupes il y aura deux rôles <strong>A</strong> et <strong>B</strong>.
+    Chaque membre se verra assigner un rôle dont les caractéristiques sont explicitées ci-après.
+    Chaque groupe est composé de deux membres <strong>A</strong> et d’un membre <strong>B</strong>.</p>
+<p>À la fin de la partie précédente un type vous a été attribué (votre type vous sera rappelé au début de cette partie).
+    Au début de cette partie, vous obtiendrez les informations sur les types des rôles <strong>A</strong> et <strong>B</strong>.</p>
+<br>
+<h5><strong>Rôle A</strong></h5>
+<p>Á chaque période, les membres <strong>A</strong> disposent chacun de {{Constants.endowment|json}} jetons qu’ils doivent entièrement répartir entre deux comptes :
+    un compte collectif commun aux trois membres du groupe et un compte privé.
+    Les membres <strong>A</strong> doivent plus précisément décider du nombre de jeton qu’ils placent dans le compte collectif.
+    Les jetons restants sont automatiquement placés dans le compte privé.
+    Les membres <strong>A</strong> sont libres de placer dans le compte collectif n’importe quel nombre entier de jeton entre 0 et {{Constants.endowment|json}}.
+    Les gains des membres <strong>A</strong> proviennent du compte collectif et de son compte privé.
+</p>
+
+<h5><strong>Compte privé</strong></h5>
+<p>Chaque jeton placé dans un compte privé rapporte {{Constants.multiplier_A}} ECU.
+    Ainsi, si un membre <strong>A</strong> place par exemple 7 jetons dans son compte privé, cette dernière lui rapporte 7 ECU.
+    Le compte privé ne rapporte de gain qu’à ce membre <strong>A</strong> seul.
+</p>
+
+<h5><strong>Compte collectif</strong></h5>
+<p>Chaque jeton placé dans le compte collectif rapporte 1.95 ECU à votre groupe.
+    Autrement dit, le nombre total de jeton placé dans le compte collectif est multiplié par 1.95 puis réparti en parts égales entre les 3 membres du groupe.
+    Ainsi chaque jeton placé dans le compte collectif rapporte 1.95/3 = {{Constants.multiplier_B}} ECU à chaque membre du groupe.
+    Si un membre <strong>A</strong> place par exemple 13 jetons dans le compte collectif, cette dernière rapporte (13*1.95)/3 = 8.45 ECU à chaque membre du groupe (<strong>A</strong> et <strong>B</strong> compris).
+</p>
+
+<h5><strong>Exemples</strong></h5>
+<p>
+    <u>Exemple 1:</u> Supposons que l’un des membres <strong>A</strong> du groupe place 10 jetons dans le compte collectif (et donc 10 jetons dans le compte privé placées automatiquement), et que l’autre membre <strong>A</strong> du groupe place 8 jetons dans le compte collectif (et donc 12 jetons dans le compte privé).
+    En tout, le compte collectif comporte donc 10 + 8 = 18 jetons.<br>
+    - Le premier membre <strong>A</strong> gagne alors : 10 (compte privé) + (18*1.95)/3 (compte collectif) = 21.7 ECU.<br>
+    - L’autre membre <strong>A</strong> du groupe gagne : 12 (compte privé) + (18*1.95)/3 (compte collectif) = 23.7 ECU.<br>
+</p>
+<p>
+    <u>Exemple 2 :</u> Supposons que l’un des membres <strong>A</strong> du groupe place 16 jetons dans le compte collectif (et donc 4 jetons dans le compte privé), et que l’autre membre <strong>A</strong> du groupe place 19 jetons dans le compte collectif (et donc 1 jeton dans le compte privé).
+    En tout, le compte collectif comporte donc 16 + 19 = 35 jetons. <br>
+    - Le premier membre <strong>A</strong> gagne alors : 4 (compte privé) + (35*1.95)/3 (compte collectif) = 26.75 ECU.<br>
+    - L’autre membre <strong>A</strong> du groupe gagne : 1 (compte privé) + (35*1.95)/3 (compte collectif) = 23.75 ECU.<br>
+</p>
+<br>
+<h5><strong>Rôle B</strong></h5>
+<p>Le membre <strong>B</strong> ne contribue pas au compte collectif et ne possède pas de compte privé.
+    Á chaque période, il possède deux pièces qu’il met en jeu en plaçant un seuil de contribution minimum pour le compte collectif.
+    Si un membre <strong>A</strong> n’atteint pas le seuil de contribution minimum.
+    Une pièce est alors utilisée et le membre <strong>A</strong> en dessous de ce seuil reçoit une pénalité  <strong>3</strong> ECU.
+    Ainsi si le seuil de contribution minimum est à 15 jetons et qu’un membre <strong>A</strong> a placé 13 jetons dans le compte collectif, ce membre reçoit une pénalité de 3 ECU.
+    Si les deux membres <strong>A</strong> n’atteignent pas le seuil, les deux pièces sont utilisées.
+    Chaque pièce non utilisée rapporte 1 ECU au membre <strong>B</strong>, s’ajoutant aux gains provenant du compte collectif.
+    Les gains du membre <strong>B</strong> proviennent donc du compte collectif et des pièces non utilisées.
+    Le membre <strong>B</strong> a le choix entre différent seuil de contribution minimum, soit :
+    Pas de seuil, seuil à 1 jeton, seuil à 5 jetons, seuil à 10 jetons, seuil à 15 jetons, seuil à 20 jetons.
+</p>
+
+<h5><strong>Exemple</strong></h5>
+<p>
+    <u>Exemple 1 :</u> Supposons comme précédemment que l’un des membres <strong>A</strong> du groupe place 10 jetons dans le compte collectif et que l’autre membre <strong>A</strong> du groupe place 8 jetons dans le compte collectif, et que cette fois le membre <strong>B</strong> du groupe place le seuil de contribution minimum à 10 jetons.
+    En tout, le compte collectif comporte toujours donc 10 + 8 = 18 jetons. <br>
+    - Le premier membre <strong>A</strong> gagne alors : 21.7 - 0 (pénalité) = 21.7 ECU. <br>
+    - L’autre membre <strong>A</strong> du groupe gagne : 23.7 - 3 (pénalité) = 20.7 ECU. <br>
+    - Le membre <strong>B</strong> gagne : (18*1.95)/3 (compte collectif) + 1 (pièce non utilisée) = 12.7 ECU. <br>
+</p>
+<p>
+    <u>Exemple 2 :</u> Supposons comme précédemment que l’un des membres <strong>A</strong> du groupe place 16 jetons dans le compte collectif et que l’autre membre <strong>A</strong> du groupe place 19 jetons dans le compte collectif, et que cette fois le membre <strong>B</strong> du groupe place le seuil de contribution minimum à 20 jetons.
+    En tout, le compte collectif comporte donc 16 + 19 = 35 jetons.<br>
+    - Le premier membre <strong>A</strong> gagne alors : 26.75  - 3 (pénalité) = 23.75 ECU. <br>
+    - L’autre membre <strong>A</strong> du groupe gagne : 23.75 - 3 (pénalité) = 20.45 ECU. <br>
+    - Le membre <strong>B</strong> gagne : (35*1.95)/3 (compte collectif) + 0 (pièce non utilisée) = 22.75 ECU. <br>
+</p>
+<br>
+<h5><strong>Prédiction</strong></h5>
+<p>
+En même temps que le choix réalisé à chaque période : <br>
+Les membres <strong>A</strong> devront faire une prédiction sur le nombre de jeton placé dans le compte collectif par l’autre membre <strong>A</strong> du groupe, ainsi que sur le seuil de contribution minimum mis en place par membre <strong>B</strong>. <br>
+Le membre <strong>B</strong> devra faire une prédiction sur le nombre de membre <strong>A</strong> qu’il pense punir avec le seuil de contribution minimum choisi.
+</p>
+<br>
+<h5><strong>Récapitulatif</strong></h5>
+<p>
+    Tous les membres du groupe prennent leur décision simultanément.
+    Lorsque tous les membres du groupe ont pris leur décision un écran "Récapitulatif" s’affiche. <br>
+    Pour les membres A, cet écran vous informe du nombre de jeton placé par chaque membre A dans le compte collectif, du nombre total de jeton dans le compte collectif, du seuil de contribution minimal mis en place par le membre B et de vos gains pour la période.<br>
+    Pour le membre B, cet écran vous informe du nombre de jeton total placé dans le compte collectif, du seuil de contribution que vous avez mis en place, du nombre de membre A punis et de vos gains pour la période.</p>
+
+<br>
+
+{% endblock %}

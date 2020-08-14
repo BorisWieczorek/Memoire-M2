@@ -1,0 +1,32 @@
+
+{% load otree %}
+
+{% block content %}
+
+
+    <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td>le compte collectif contient :</td><td> {{ group.total_contribution|json }} jetons </td></tr>
+        <tr><td>Vous avez placez le seuil de contribution minimum à :</td><td> {{ player.seuil|json }} jetons </td></tr>
+
+
+        <tr><td> Vous avez puni :</td><td> {{ group.puni|json }} membre(s) A  </td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Vos gains provenant de l'urne B :</td><td>  {{ group.urnB|json }} ECU </td></tr>
+        <tr><td>Vos gains provenant de vos pièces restantes :</td><td>  {{ group.piece|json }} ECU </td></tr>
+        <!--<tr><td>Votre dotation initiale:</td><td>  {{ Constants.initial }}€ </td></tr>-->
+
+        <tr><td>Votre gain total pour cette période :</td><td> {{ player.payoff|json }} ECU </td></tr>
+
+    </table>
+    <p></p>
+
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+
+
+{% endblock %}
+
+

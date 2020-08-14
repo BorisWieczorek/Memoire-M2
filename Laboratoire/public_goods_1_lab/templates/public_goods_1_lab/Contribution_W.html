@@ -1,0 +1,81 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+Partie 2 - Décision Période {{ group.round_number }}
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Le membre <strong>B</strong> de votre groupe dispose de deux pièces valant 1 ECU lui permettant de punir les membres <strong>A</strong> du groupe.
+    Il place ainsi un seuil de contribution minimum au compte collectif.
+    Si un membre <strong>A</strong> n'atteint pas ce seuil, il se voit recevoir une punition de <strong>3</strong> ECU.
+    Les gains du membre <strong>B</strong> par période proviennent du compte collectif et de ses pièces restantes.
+</p>
+<p>
+    Vous (ainsi que l'autre membre <strong>A</strong> du groupe) disposez de {{Constants.endowment|json}} jetons à disposer entre un compte collectif commun aux trois membres du groupe et un compte privé.
+    Chaque jeton placé dans le compte collectif par vous ou l'autre membre <strong>A</strong> de votre groupe, rapporte {{Constants.multiplier_B}} ECU à chaque membre du groupe (membres <strong>A</strong> et <strong>B</strong>).
+    Chaque jeton que vous placez dans votre compte privé vous rapporte {{Constants.multiplier_A}} ECU à vous seul.<br>
+    Vos gains par période proviennent de votre compte privé et du compte collectif, soustrait d'une punition si votre contribution au compte collectif est inférieure au seuil mis en place par le membre <strong>B</strong>.
+</p>
+<p>
+    Vous devez choisir combien des <span id=\"ballll\"> </span> jetons vous souhaitez placer dans le compte collectif, les jetons restants seront automatiquement placés dans le compte privé.
+    Vous devez aussi indiquer vos prédictions concernant la contribution au compte collectif de l'autre membre <strong>A</strong> de votre groupe, ainsi que sur le seuil de contribution minimum au compte collectif choisi par le membre <strong>B</strong> de votre groupe.
+    Ensuite, cliquez sur <strong>Suivant</strong> pour valider vos choix.<br>
+    En cas de besoins, vous retrouverez le détail des instructions en bas de cette page.
+</p>
+<br>
+
+    {% include Constants.interface_contribute_template %}
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    {% formfield player.prediction_W_autre label="D'après vous, combien des <span id=\"balll\"> </span> jetons seront placé dans le compte collectif par l'autre membre <strong>A</strong> de votre groupe pour cette période ?" %}
+<br>
+    {% formfield player.prediction_W_seuil label="D'après vous, a quel niveau sera placé le seuil de contribution minimum au compte collectif par le membre <strong>B</strong> de votre groupe pour cette période ?" %}
+<br>
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+
+
+<br>
+<br>
+<br>
+
+<h4><strong>Instructions</strong></h4>
+
+
+    {% include Constants.instructions_template %}
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script type="text/javascript">
+    var myVar = setInterval(function(){f8()}, 1000);
+    var myVar = setInterval(function(){f9()}, 1000);
+
+        function f8() {
+        ball = {{ Constants.endowment|json }}*1;
+        document.getElementById("balll").innerHTML = ball;
+        };
+        function f9() {
+        ball = {{ Constants.endowment|json }}*1;
+        document.getElementById("ballll").innerHTML = ball;
+        };
+
+    window.onload = function(){f8();f9();f(32);};
+
+</script>
+
+
+{% endblock %}
