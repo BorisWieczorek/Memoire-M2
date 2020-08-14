@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Résultat
+{% endblock %}
+
+{% block content %}
+
+<p>Lors la première partie vous avez gagné  {{ gain_1 }} ECU.</p>
+<p>Lors la seconde partie vous avez gagné  {{ gain_2 }}ECU.</p>
+<p>Vous avez donc un total de {{player.gain|json}} ECU pour l'ensemble de l'expérience. Le taux de conversion en vigueur est de 0.1.</p>
+
+<p> Votre gain total est donc de {{player.gain_t|json}} euros ajouté de 1 euro pour la partie 3 ainsi que de 3 euros pour votre participation. </p>
+    <p>Votre paiement atteint {{ player.total_gain|json }}€ </p>
+
+
+    <p><br/><br/><br/></p>
+
+<p> Merci d'avoir participé à l'expérience.</p>
+<p> Si vous le souhaitez, vous pouvez laisser des commentaires dans l'espace ci-dessous.</p>
+
+
+        {% formfield player.commentaire %}
+
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+{% endblock %}
