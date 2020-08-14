@@ -1,0 +1,30 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Veuillez remplir le questionnaire ci-dessous. Ce questionnaire est totalement anonyme, nous vous remercions donc
+        d'y répondre sincèrement. Vous ne pourrez valider ce questionnaire que lorsque vous aurez répondu à l'ensemble
+        des questions.
+    </p>
+
+    <p>
+        {% formfield player.sex %}
+        {% formfield player.sisters_brothers %}
+        {% formfield player.student %}
+        {% formfield player.field_of_studies %}
+        {% formfield player.level_of_study %}
+        {% formfield player.couple %}
+        {% formfield player.previous_participation %}
+    </p>
+
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+
+{% endblock %}

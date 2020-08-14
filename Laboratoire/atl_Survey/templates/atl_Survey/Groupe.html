@@ -1,0 +1,27 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Questionnaire 2/3
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Veuillez remplir le questionnaire ci-dessous. Ce questionnaire est totalement anonyme, nous vous remercions donc
+        d'y répondre sincèrement. Vous ne pourrez valider ce questionnaire que lorsque vous aurez répondu à l'ensemble
+        des questions.
+    </p>
+<br>
+
+<center><img src="{% static "Groupe.jpg" %}" width="80%"/></center>
+
+    <p>
+        {% formfield player.groupe %}
+    </p>
+
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+
+{% endblock %}
