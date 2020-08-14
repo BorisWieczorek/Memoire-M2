@@ -91,7 +91,7 @@ class Results(Page):
 
 
 class ShuffleWaitPage(WaitPage):
-    #wait_for_all_groups = True
+    wait_for_all_groups = True
 
     def after_all_players_arrive(self):
         self.subsession.do_my_shuffle()
