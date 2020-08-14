@@ -1,0 +1,18 @@
+
+{% load otree %}
+
+{% block content %}
+
+
+<p> Vous avez été classifié <strong>{{ player.type }}</strong> <br>
+    Votre rôle pour cette partie est <strong>A</strong></p>
+
+<br>
+
+<p> Dans votre groupe, les autres membres sont caractérisés comme suivant : <br>
+    -<strong>Rôle A</strong> de <strong>{{ player.type }}</strong> <br>
+    -<strong>Rôle B</strong> </p>
+
+
+
+{% endblock %}

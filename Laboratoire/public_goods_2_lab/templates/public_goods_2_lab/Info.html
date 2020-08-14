@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Partie 2 - Information
+{% endblock %}
+
+{% block content %}
+
+<p>Comme expliqué précédemment, vous effectuez cette partie en groupe de trois membres.</p>
+<p>Basé sur les décisions réalisées dans la seconde phase de la première partie, chaque participant s’est vue attribuer un type, <strong>X</strong> ou <strong>Y</strong>.</p>
+
+
+<p> les types corresponds aux situations suivantes: </p>
+<p>   <u>Type X :</u> Participant ayant décidé d’effectuer le <strong>Choix X</strong> dans le cas où l’autre membre de sa paire a effectué le <strong>Choix X</strong>, aboutissant à la situation où ils gagnaient tous deux 26 ECU.</p>
+<p>   <u>Type Y :</u> Participant ayant décidé d’effectuer le <strong>Choix Y</strong> dans le cas où l’autre membre de sa paire a effectué le <strong>Choix X</strong>, aboutissant à la situation où il gagnait 33 ECU alors que l’autre membre de sa paire gagnait 0 ECU.</p>
+
+    {% include player.template_type %}
+
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+
+{% endblock %}

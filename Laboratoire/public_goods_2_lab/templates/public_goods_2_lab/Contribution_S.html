@@ -1,0 +1,92 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+Partie 2 - Décision Période {{ group.round_number }}
+{% endblock %}
+
+{% block content %}
+<p>
+    Les membres <strong>A</strong> disposent de {{Constants.endowment|json}} jetons à disposer entre un compte collectif commun aux trois membres du groupe et un compte privé.
+    Chaque jeton placé dans le compte collectif par un membre <strong>A</strong> rapporte {{Constants.multiplier_B}} ECU à chaque membre du groupe (membres <strong>A</strong> et <strong>B</strong>).
+    Alors que chaque jeton placé dans un compte privé par un membre <strong>A</strong> rapporte {{Constants.multiplier_A}} ECU à ce membre <strong>A</strong> seul.
+    Les gains des membres <strong>A</strong> par période proviennent du compte collectif et de leur compte privé, soustrait de votre punition.
+</p>
+<p>
+    Vous disposez de 2 pièces valant 1 ECU vous permettant de punir les membres <strong>A</strong> de votre groupe.
+    Pour cela, vous devez choisir un seuil de contribution minimum au compte collectif.
+    Les membres <strong>A</strong> ne respectant pas ce seuil seront puni à la hauteur de <strong>3</strong>ECU.
+    Pour chaque membre <strong>A</strong> puni, l'une de vos pièces sera utilisée.<br>
+    Vos gains par période proviennent du compte collectif et de vos pièces restantes.
+</p>
+<p>
+    Vous devez choisir le seuil de contribution minimum au compte collectif pour cette période, ainsi que le nombre de membre <strong>A</strong> que vous pensez punir à cette période.
+    Ensuite, cliquez sur <strong>Suivant</strong> pour valider vos choix.<br>
+    En cas de besoins, vous retrouverez le détail des instructions en bas de cette page.
+</p>
+<br>
+<br>
+<br>
+<br>
+
+<style>
+.instructions {
+    margin-bottom: 20px;
+}
+.data{background-repeat: no-repeat; margin-left:38%; margin-top : -5% ; width : 400px; height: 450px; background-position : 60% 60%; position : absolute;}
+.info{margin-left:5%; margin-top : -5% ; width : 400px; height: 230px;position : absolute;}
+</style>
+
+    <div class="info">
+        <table class="table table-bordered text-center">
+            <tr><td>Votre groupe est composé de la manière suivante:</td> </tr>
+            <tr><td>Vous êtes un <strong>Rôle B</strong> de <strong>{{ group.type_S }}</strong></td> </tr>
+            <tr><td>L'un des <strong>Rôle A</strong> du groupe est du <strong>{{ group.type_W }}</strong></td> </tr>
+            <tr><td>L'autre <strong>Rôle A</strong> du groupe est du <strong>{{ group.type_W }}</strong></td> </tr>
+        </table>
+    </div>
+
+
+{% if player.round_number > 1 %}
+    {% include Constants.historique_S_template with parent="Contribution" %}
+{% endif %}
+
+<br><br><br><br><br><br>
+    {% formfield player.seuil label="Choissisez le seuil que vous souhaitez mettre en place pour cette période ?"%}
+
+<br>
+{% formfield player.prediction_S_puni label="Combien de membre <strong>A</strong> pensez vous punir avec le seuil choisi pour cette période ?" %}
+<br>
+
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+
+
+<br>
+<br>
+<br>
+
+<h4><strong>Instructions</strong></h4>
+
+    {% include Constants.instructions_template %}
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script type="text/javascript">
+    var myVar = setInterval(function(){f22()}, 1000);
+
+        function f22() {
+        multipleBp = (1*{{ Constants.multiplier_B }})/{{ Constants.players_per_group }};
+        document.getElementById("multipleBp").innerHTML = Math.round(multipleBp*100)/100;
+        };
+
+    window.onload = function(){f22();};
+
+</script>
+
+{% endblock %}

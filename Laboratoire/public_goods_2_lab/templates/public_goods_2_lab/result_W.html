@@ -1,0 +1,64 @@
+
+{% load otree %}
+
+{% block content %}
+
+<br>
+    <table class="table-condensed" style="width:600px; margin-top:20px;">
+        <tr><td>Vous avez placé dans le compte collectif :</td><td> <span id="contribution"> </span> jetons </td></tr>
+        <tr><td>L'autre membre A de votre groupe a placé dans le compte collectif :</td><td><span id="autre_contribution"> </span> jetons </td></tr>
+
+
+        <tr><td>Le compte collectif  contient au total :</td><td> <span id="B"> </span> jetons  </td></tr>
+
+        <tr><td>Le seuil choisi par le membre B est de :</td><td> <span id="C"> </span> jetons  </td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Vos gains provenant de l'urne A :</td><td> {{ player.urnA|json }} ECU </td></tr>
+        <tr><td>Vos gains provenant de l'urne B :</td><td>  {{ group.urnB|json }} ECU </td></tr>
+        <tr><td>Votre punition :</td><td>  {{ player.punition|json }} ECU </td></tr>
+        <!--<tr><td>Votre dotation initiale:</td><td>  {{ Constants.initial }}€ </td></tr>-->
+
+        <tr><td>Votre gain total pour cette période :</td><td> {{ player.payoff|json }} ECU </td></tr>
+
+    </table>
+    <p></p>
+
+     <button class="btn btn-primary btn-large">
+        Suivant
+    </button>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script type="text/javascript">
+    var myVar = setInterval(function(){f1()}, 1000);
+    var myVar = setInterval(function(){f2()}, 1000);
+    var myVar = setInterval(function(){f3()}, 1000);
+    var myVar = setInterval(function(){f4()}, 1000);
+
+    function f1() {
+        var t = {{ group.total_contribution|json }} - {{ player.contribution|json }} ;
+        document.getElementById("autre_contribution").innerHTML = t;
+    };
+    function f2() {
+        var tt = {{ player.contribution|json }} ;
+        document.getElementById("contribution").innerHTML = tt;
+    };
+    function f3() {
+    var ttt =  {{ group.total_contribution|json }} ;
+        document.getElementById("B").innerHTML = ttt;
+    };
+    function f4() {
+    var tttt =  {{ group.seuil_info|json }} ;
+        document.getElementById("C").innerHTML = tttt;
+    };
+
+    window.onload = function(){f1();f2();f3();f4();};
+</script>
+
+
+{% endblock %}
