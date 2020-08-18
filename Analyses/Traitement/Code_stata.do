@@ -99,13 +99,13 @@ logit contribution groupe traitement session if round==1
 
 *Ajout des variables de contrôle et des variables explicatives*
 *Régression linéaire*
-regress contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition if round==1
+regress contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition puni if round==1
 *Tobit*
-tobit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition if round==1, ll(0) ul(20)
+tobit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition puni if round==1, ll(0) ul(20)
 *Probit*
-probit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition if round==1
+probit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition puni if round==1
 *Logit*
-logit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition if round==1
+logit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition puni if round==1
 
 
 *extension à tous les rounds*
@@ -121,13 +121,13 @@ logit contribution groupe traitement session round
 
 *Ajout des variables de contrôle et des variables explicatives*
 *Régression linéaire*
-regress contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition round
+regress contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition puni round 
 *Tobit*
-tobit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition round, ll(0) ul(20)
+tobit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition puni round, ll(0) ul(20)
 *Probit*
-probit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition round 
+probit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition puni round 
 *Logit*
-logit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition if round
+logit contribution groupe traitement session homogene seuil sexe etudiant domaine_etude diplome couple premiere_participation confiance prediction_autre_contribution prediction_seuil punition puni if round
 
 *extraction de la régression sous format latex*
 *Après la ligne de code de la régression voulue réaliser les deux lignes suivante*
@@ -135,4 +135,3 @@ logit contribution groupe traitement session homogene seuil sexe etudiant domain
 estimates store NOM
 *Extraction du tableau en format .tex*
 esttab NOM using "CH
-
