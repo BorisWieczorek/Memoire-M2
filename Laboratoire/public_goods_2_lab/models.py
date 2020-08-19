@@ -14,7 +14,7 @@ Jeu de bien public 2
 class Constants(BaseConstants):
     name_in_url = 'public_goods_2_lab'
     players_per_group = 3
-    num_rounds = 2
+    num_rounds = 10
 
     instructions_template = 'public_goods_2_lab/instructions.html'
     interface_contribute_template = 'public_goods_2_lab/interface_contribute.html'
